@@ -1,0 +1,188 @@
+//Carousel
+section.bg-dark
+  #carouselExampleSlidesOnly.carousel.slide data-ride="carousel"
+    .carousel-inner
+      .carousel-item.active.mt-0
+        / div.mx-auto.mt-0 style="background: url(#{url_for(SliderImage.first.image[0])}) no-repeat; height: 450px; background-size: cover;"
+      / .carousel-item
+      /   div.mx-auto.mt-0 style="background: url(#{url_for(SliderImage.first.image[1])}) no-repeat; height: 450px; background-size: cover;"
+      / .carousel-item
+        div.mx-auto.mt-0 style="background: url(#{url_for(SliderImage.first.image[2])}) no-repeat; height: 450px; background-size: cover;"
+/ div style=" height: 450px; background-size: cover;"
+          = image_tag("slide5.jpg")
+/ img.d-block.w-100 alt=("Third slide") src=(".../800x400?auto=yes&bg=555&fg=333&text=Third slide") /
+//Intro
+section.container-fluid.primarycolor
+  h2.text-center.mb-4.text-light = About.first.title
+  p.text-light.text-justify = About.first.description
+
+// Services
+section.container-fluid.mt-5.bg-light
+  h2.my-4.text-center
+  |Services
+  #carouselExampleControls.carousel.slide data-ride="carousel"
+    .carousel-inner
+      .carousel-item.active
+        .col-12.d-flex.justify-content-around
+          - Service.all[0...3].each do |serv|
+            .card style=("width: 19rem;")
+              / div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
+              / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
+              .card-body.primarycolor
+                h4.card-text.text-light = serv.name
+                p.card-text.text-light.text-justify = serv.description
+      .carousel-item
+        .col-12.d-flex.justify-content-around
+          - Service.all[3...6].each do |serv|
+            .card style=("width: 19rem;")
+              / div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
+              / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
+              .card-body.primarycolor
+                h4.card-text.text-light = serv.name
+                p.card-text.text-light.text-justify = serv.description
+      .carousel-item
+        .col-12.d-flex.justify-content-around
+          - Service.all[6...9].each do |serv|
+            .card style=("width: 19rem;")
+              / div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
+              / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
+              .card-body.primarycolor
+                h4.card-text.text-light = serv.name
+                p.card-text.text-light.text-justify = serv.description
+    a.carousel-control-prev.mt-5 data-slide="prev" href="#carouselExampleControls" role="button"
+      span.carousel-control-prev-icon aria-hidden="true"
+      span.sr-only Previous
+    a.carousel-control-next data-slide="next" href="#carouselExampleControls" role="button"
+      span.carousel-control-next-icon aria-hidden="true"
+      span.sr-only Next
+
+
+
+
+/ .col-4.d-flex.justify-content-around
+          .card style=("width: 19rem;")
+            div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 200px; background-size: cover;"
+            / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
+            .card-body.primarycolor
+              h4.card-text.text-light = serv.name
+              p.card-text.text-light.text-justify = serv.description
+
+//Running projects
+section.container-fluid.mt-5.primarycolor.text-light
+  h2.text-center Running Projects
+  .row.mt-5
+    - Project.where(status: 0).each do |proj|
+      .col-6.mt-5
+        / div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+      .col-6.mt-5
+        h4 = proj.name
+        table.table.w-100.text-light
+          tr
+            td Project
+            td = proj.name
+          tr
+            td Location
+            td = proj.location
+          tr
+            td Client
+            td = proj.owner
+          tr
+            td Scope of Work
+            td = proj.description
+// Completed Projects
+section.container-fluid.mt-5
+  h2.text-center Completed Projects
+  .row.mt-5
+    - Project.where(status: 1).each do |proj|
+      .col-6.mt-5
+        h4 = proj.name
+        table.table.w-100
+          tr
+            td Project
+            td = proj.name
+          tr
+            td Location
+            td = proj.location
+          tr
+            td Client
+            td = proj.owner
+          tr
+            td Scope of Work
+            td = proj.description
+      .col-6
+        / div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+
+//Clients
+section.container-fluid.mt-5.bg-light.px-0
+  h2.text-center Our Clients
+  .row.mt-5
+    - Client.all.each do |person|
+      .col-4.d-flex.justify-content-center
+        / = image_tag (person.image), style: 'width: 350px; background-size: cover;'
+        / div style="background: url(#{asset_path("slide1.jpg")}) no-repeat; height: 350px; background-size: cover;"
+          / div.mt-2 style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+
+// Our Team
+section#overlay.container-fluid.mt-5.bckimg
+  h2.text-center.text-secondary Our Team
+  .row.mt-5
+    - TeamMember.all[0..3].each do |team|
+      .col-3.d-flex.justify-content-around
+        .card style=("width: 19rem;background:#385577")
+          / div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover;"
+          .card-body.p-1
+            h5.text-center.card-title.text-light.mb-0 = team.name
+            p.text-center.text-light
+              strong = team.position
+            p.card-text.bg-light.p-2 style=("color:#385577;") = team.achievement
+/ .col-4.d-flex.justify-content-around
+      .card style=("width: 19rem;background:#385577")
+        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 145px;width: 145px; background-size: cover;"
+        .card-body.p-1
+          h5.text-center.card-title.text-light.mb-0 Mr. Ram
+          p.text-center.text-light
+            strong CEO
+          p.card-text.bg-light.p-2 style=("color:#385577;") Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.
+/ .col-4.d-flex.justify-content-around
+      .card style=("width: 19rem;background:#385577")
+        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 145px;width: 145px; background-size: cover;"
+        .card-body.p-1
+          h5.text-center.card-title.text-light.mb-0 Mr. Ram
+          p.text-center.text-light
+            strong CEO
+          p.card-text.bg-light.p-2 style=("color:#385577;") Some quick example text to build on the card title and make up the bulk of the card's content.Some quick example text to build on the card title and make up the bulk of the card's content.
+
+//Contact us
+section.container-fluid.mt-5
+  h2.text-center.my-5 Contact us
+  .row
+    .col-6
+      iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3532.9729120334446!2d85.32615915001384!3d27.687232082899484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnique%20Hydro%20and%20Electric%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1580118794250!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen=""
+    .col-6
+      form
+        .form-group
+          label for="exampleInputEmail1"  Your Name
+          input#exampleInputEmail1.form-control aria-describedby="emailHelp" placeholder=("Enter name") type="email" /
+        / small#emailHelp.form-text.text-muted We'll never share your email with anyone else.
+        .form-group.mt-3
+          label for="exampleInputPassword1"  Email
+          input#exampleInputPassword1.form-control placeholder="Email"  /
+/ .form-group.mt-3
+/   label for="exampleInputPassword1"  Subject
+/   input.form-control placeholder="Subject"  /
+/ .form-group.mt-3
+/   label for="exampleInputPassword1"  Email
+/   textarea.w-100.form-control placeholder="Your message"
+/ button.btn-primary.btn-lg.text-ligh.mx-auto.p-1 Submit
+
+css:
+  .primarycolor {
+    background-color: #2b4d76;
+  }
+
+  .bckimg {
+    height: 100vh;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+  }
