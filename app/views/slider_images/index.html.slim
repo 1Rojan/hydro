@@ -1,0 +1,21 @@
+h1 Listing slider_images
+
+table
+  thead
+    tr
+      th Name
+      th
+      th
+      th
+
+  tbody
+    - @slider_images.each do |slider_image|
+      tr
+        td = slider_image.name
+        td = link_to 'Show', slider_image
+        td = link_to 'Edit', edit_slider_image_path(slider_image)
+        td = link_to 'Destroy', slider_image, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Slider image', new_slider_image_path

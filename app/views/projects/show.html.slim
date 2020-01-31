@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @project.name
+p
+  strong Location:
+  = @project.location
+p
+  strong Owner:
+  = @project.owner
+p
+  strong Desciption:
+  = @project.desciption
+p
+  strong Construction period:
+  = @project.construction_period
+p
+  strong Status:
+  = @project.status
+
+=> link_to 'Edit', edit_project_path(@project)
+'|
+=< link_to 'Back', projects_path

@@ -1,0 +1,9 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @slider_image.name
+
+=> link_to 'Edit', edit_slider_image_path(@slider_image)
+'|
+=< link_to 'Back', slider_images_path

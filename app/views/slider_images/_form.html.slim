@@ -1,0 +1,12 @@
+= form_for @slider_image do |f|
+  - if @slider_image.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@slider_image.errors.count, "error")} prohibited this slider_image from being saved:"
+      ul
+        - @slider_image.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

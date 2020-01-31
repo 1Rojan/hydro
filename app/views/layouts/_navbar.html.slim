@@ -1,0 +1,34 @@
+nav.navbar.sticky-top.navbar-light.bg-light.navbar-expand-lg
+  a.navbar-brand href="#"  Unique Hydro
+  button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
+    span.navbar-toggler-icon
+  #navbarNavDropdown.collapse.navbar-collapse.d-flex.justify-content-center
+    ul.navbar-nav
+      li.nav-item.active.mr-5
+        a.nav-link style=("color:#385577;") href="#"
+          | Home
+          span.sr-only (current)
+      li.nav-item.dropdown.mr-5
+        a#navbarDropdownMenuLink.nav-link style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+          | Services
+          .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+            -Service.all.each do |serv|
+              a.dropdown-item href="#"
+                = serv.name
+      li.nav-item.dropdown.mr-5
+        a#navbarDropdownMenuLink1.nav-link style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+          | Projects
+          .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+            a.dropdown-item href="#"  Running Projects
+            a.dropdown-item href="#"  Completed Projects
+
+      / li.nav-item.mr-5
+        a.nav-link style=("color:#385577;") href="#"  Projects
+      / li.nav-item.mr-5
+        a.nav-link style=("color:#385577;") href="#"  Portfolio
+      li.nav-item.mr-5
+        a.nav-link style=("color:#385577;") href="#"  Clients
+      li.nav-item.mr-5
+        a.nav-link style=("color:#385577;") href="#"  Our Team
+      li.nav-item
+        a.nav-link style=("color:#385577;") href="#"  Contact Us
