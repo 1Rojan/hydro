@@ -1,0 +1,21 @@
+h1 Listing abouts
+
+table
+  thead
+    tr
+      th Description
+      th
+      th
+      th
+
+  tbody
+    - @abouts.each do |about|
+      tr
+        td = about.description
+        td = link_to 'Show', about
+        td = link_to 'Edit', edit_about_path(about)
+        td = link_to 'Destroy', about, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New About', new_about_path
