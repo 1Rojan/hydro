@@ -1,34 +1,84 @@
-nav.navbar.sticky-top.navbar-light.bg-light.navbar-expand-lg
-  a.navbar-brand href="#"  Unique Hydro
+/ nav.navbar.navbar-expand-lg.me_sticky.py-2.px-0 style=("background-color: #00498a;z-index:2")
+nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.position-absolute
+  =link_to root_path do
+    div style='background: url("#{asset_path("unique.png")}");height:65px;width:110px;background-size:contain'
+  / =image_tag("uniquehydro.jpg")
+  / a.navbar-brand href="#"  Unique Hydro
   button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
     span.navbar-toggler-icon
-  #navbarNavDropdown.collapse.navbar-collapse.d-flex.justify-content-center
-    ul.navbar-nav
+  #navbarNavDropdown.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
       li.nav-item.active.mr-5
-        a.nav-link style=("color:#385577;") href="#"
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"
           | Home
           span.sr-only (current)
       li.nav-item.dropdown.mr-5
-        a#navbarDropdownMenuLink.nav-link style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+        a#navbarDropdownMenuLink.nav-link.text-light.font-weight-bolder style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
           | Services
-          .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-            -Service.all.each do |serv|
-              a.dropdown-item href="#"
-                = serv.name
+        .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+          -Service.all.each do |serv|
+            .dropdown-item
+              = link_to "#{serv.name}", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark fa-sm px-0 py-0'
       li.nav-item.dropdown.mr-5
-        a#navbarDropdownMenuLink1.nav-link style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+        a#navbarDropdownMenuLink1.nav-link.text-light.font-weight-bolder style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
           | Projects
-          .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-            a.dropdown-item href="#"  Running Projects
-            a.dropdown-item href="#"  Completed Projects
-
-      / li.nav-item.mr-5
-        a.nav-link style=("color:#385577;") href="#"  Projects
-      / li.nav-item.mr-5
-        a.nav-link style=("color:#385577;") href="#"  Portfolio
+        .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
+          a.dropdown-item.fa-sm href="#"  Running Projects
+          a.dropdown-item.fa-sm href="#"  Completed Projects
       li.nav-item.mr-5
-        a.nav-link style=("color:#385577;") href="#"  Clients
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"  Clients
       li.nav-item.mr-5
-        a.nav-link style=("color:#385577;") href="#"  Our Team
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"  Our Team
       li.nav-item
-        a.nav-link style=("color:#385577;") href="#"  Contact Us
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"  Contact Us
+css:
+  nav a::after{
+    content: '';
+    display: block;
+    height: 5px;
+    width: 0%;
+    background-color: #bf1e1e;
+    transition: all ease-in-out 250ms;
+  }
+
+  nav a:hover::after{
+    width: 100%;
+  }
+  nav
+  {
+    /*opacity: 0.85;*/
+    /*filter: alpha(opacity=80);*/
+  }
+
+  .primarycolor {
+    background-color: #2b4d76;
+  }
+  .transparency{
+    background-color: transparent;
+  }
+  .black{
+    background-color: rgba(43, 48, 61,0.88);
+    position: fixed!important;
+    padding-bottom: 1px;
+    transition:  all ease-in-out 250ms;
+  }
+
+javascript:
+
+        var stickyEl = document.querySelector('.me_sticky')
+        var stickyPosition = stickyEl.getBoundingClientRect().top;
+        var offset = 1
+        window.addEventListener('scroll', function () {
+            if (window.pageYOffset >= stickyPosition + offset) {
+                stickyEl.style.position = 'fixed';
+                stickyEl.style.top = '0px';
+                stickyEl.style.width = '100%';
+                stickyEl.classList.add("black");
+
+            } else {
+                stickyEl.style.position = 'relative';
+                stickyEl.style.top = '';
+                stickyEl.classList.remove("black");
+
+            }
+        });

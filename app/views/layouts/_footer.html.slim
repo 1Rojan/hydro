@@ -6,24 +6,26 @@ footer.page-footer.font-small.mdb-color.text-light.mt-5 style=("background-color
       /! Grid column
       .col-md-3.col-lg-3.col-xl-3.mx-auto.mt-3
         h6.text-uppercase.mb-4.font-weight-bold.text-light Unique Hydro
-        p
-          | Here you can use rows and columns to organize your footer content
-          | adipisicing elit.
+        p.text-justify
+          |Cosmic Electrical is one of the leading engineering companies in the power sector with transmission lines, sub-stations/switchyards, distribution lines, electrification & operation and maintenance services as its core business areas.
       /! Grid column
       hr.w-100.clearfix.d-md-none
       /! Grid column
       .col-md-2.col-lg-2.col-xl-2.mx-auto.mt-3
         h6.text-uppercase.mb-4.font-weight-bold Products
-        p MDBootstrap
-        p  MDWordPress
-
+        p
+          - Service.all[3...6].each do |serv|
+            = link_to "#{serv.name}", display_path(serv, service_id:serv.id ), class: 'text-decoration-none text-light'
+            br.mt-2
       /! Grid column
       hr.w-100.clearfix.d-md-none
       /! Grid column
       .col-md-3.col-lg-2.col-xl-2.mx-auto.mt-3
         h6.text-uppercase.mb-4.font-weight-bold Useful links
-        p  Your Account
-        p Become an Affiliate
+        p
+          = link_to "Services", display_index_path(index: "services") , class: 'text-decoration-none text-light'
+        p
+          = link_to "Projects", display_index_path(index: "completedProjects") , class: 'text-decoration-none text-light'
       /! Grid column
       hr.w-100.clearfix.d-md-none
       /! Grid column
@@ -35,6 +37,10 @@ footer.page-footer.font-small.mdb-color.text-light.mt-5 style=("background-color
         p
           i.fas.fa-envelope.mr-3
           | info@gmail.com
+        p
+          i.fas.fa-phone.mr-3
+          | 01-4786248
+
     /! Grid column
     /! Footer links
     / hr.mt-1.mb-0.bg-light
@@ -44,7 +50,7 @@ footer.page-footer.font-small.mdb-color.text-light.mt-5 style=("background-color
       .col-md-7.col-lg-8.d-flex.align-items-end
         /! Copyright
         small.text-center.text-md-left
-          | © 2019 Copyright:
+          | © Unique Hydro & Electric Copyright:
           a href="https://mdbootstrap.com/education/bootstrap/"
       /! Grid column
       /! Grid column
@@ -53,7 +59,7 @@ footer.page-footer.font-small.mdb-color.text-light.mt-5 style=("background-color
         .text-center.text-md
           ul.list-unstyled.list-inline
             li.list-inline-item
-              a.btn-floating.btn-sm.rgba-white-slight.mx-1.bg-primary.text-decoration-none.text-light href="http://www.facebook.com"
+              a.btn-floating.btn-sm.rgba-white-slight.mx-1.bg-primary.text-decoration-none.text-light href="https://www.facebook.com/unique.hydroelectric/"
                 i.fab.fa-facebook-f
             li.list-inline-item
               a.btn-floating.btn-sm.rgba-white-slight.mx-1.bg-info.text-decoration-none.text-light href="http://www.twitter.com"

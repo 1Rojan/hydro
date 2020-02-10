@@ -69,6 +69,6 @@ class SliderImagesController <  DashboardsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def slider_image_params
-      params.require(:slider_image).permit(:name)
+      params.require(:slider_image).permit(:name, image: [])
     end
 end

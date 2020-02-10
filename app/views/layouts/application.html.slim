@@ -19,9 +19,9 @@ html
   body
     = render('layouts/navbar')
     - if notice
-      p.alert.alert-success= notice
+      p.alert.alert-success.position-absolute style="z-index:1000;" = notice
     - if alert
-      p.alert.alert-danger= alert
+      p.alert.alert-danger.position-absolute style="z-index:100;"= alert
     = yield
     = render('layouts/footer')
 

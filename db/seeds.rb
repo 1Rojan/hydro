@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-# client_images = Dir[Rails.root.join('app/assets/images/client', '*.*')]
-# project_images = Dir[Rails.root.join('app/assets/images/projects', '*.*')]
-# service_images = Dir[Rails.root.join('app/assets/images/services', '*.*')]
-# slider_images = Dir[Rails.root.join('app/assets/images/sliderImages', '*.*')]
-# team_images = Dir[Rails.root.join('app/assets/images/team', '*.*')]
+client_images = Dir[Rails.root.join('app/assets/images/client', '*.*')]
+project_images = Dir[Rails.root.join('app/assets/images/projects', '*.*')]
+service_images = Dir[Rails.root.join('app/assets/images/services', '*.*')]
+slider_images = Dir[Rails.root.join('app/assets/images/sliderImages', '*.*')]
+team_images = Dir[Rails.root.join('app/assets/images/team', '*.*')]
 admin = User.create(
     email: 'admin@ideabreed.net',
     password: 'password',
@@ -55,16 +55,16 @@ end
       services.errors.messages
     end
 
-    # io_files1 = service_images
-    #
-    # io_files1.each do |f|
-    #
-    #   image = File.open(f)
-    #
-    #   services.image.attach io: image, filename: f.split('/').last
-    #
-    #   image.close
-    # end
+    io_files1 = service_images
+
+    io_files1.each do |f|
+
+      image = File.open(f)
+
+      services.image.attach io: image, filename: f.split('/').last
+
+      image.close
+    end
   end
 end
 
@@ -88,16 +88,16 @@ projects.each do |project|
     puts projects.errors.messages
   end
 
-  # io_files1 = project_images
-  #
-  # io_files1.each do |f|
-  #
-  #   image = File.open(f)
-  #
-  #   projects.image.attach io: image, filename: f.split('/').last
-  #
-  #   image.close
-  # end
+  io_files1 = project_images
+
+  io_files1.each do |f|
+
+    image = File.open(f)
+
+    projects.image.attach io: image, filename: f.split('/').last
+
+    image.close
+  end
 end
 #
 departments=['Transmission','Design','Sub station','Administrative']
@@ -136,16 +136,16 @@ departments.each do |department|
     else
       puts teams.errors.messages
     end
-    # io_files1 = team_images.sample(1)
-    #
-    # io_files1.each do |f|
-    #
-    #   image = File.open(f)
-    #
-    #   teams.image.attach io: image, filename: f.split('/').last
-    #
-    #   image.close
-    # end
+    io_files1 = team_images.sample(1)
+
+    io_files1.each do |f|
+
+      image = File.open(f)
+
+      teams.image.attach io: image, filename: f.split('/').last
+
+      image.close
+    end
   end
 
 end
@@ -161,16 +161,16 @@ clients.each do |client|
   else
     clients.errors.messages
   end
-  # io_files1 = client_images.sample(1)
-  #
-  # io_files1.each do |f|
-  #
-  #   image = File.open(f)
-  #
-  #   clients.image.attach io: image, filename: f.split('/').last
-  #
-  #   image.close
-  # end
+  io_files1 = client_images.sample(1)
+
+  io_files1.each do |f|
+
+    image = File.open(f)
+
+    clients.image.attach io: image, filename: f.split('/').last
+
+    image.close
+  end
 end
 
 sliders = SliderImage.create(
@@ -182,14 +182,14 @@ if sliders.persisted?
 else
   puts sliders.errors.messages  
 end
-# io_files1 = slider_images.sample(3)
-#
-# io_files1.each do |f|
-#
-#   image = File.open(f)
-#
-#   sliders.image.attach io: image, filename: f.split('/').last
-#
-#   image.close
-# end
+io_files1 = slider_images.sample(3)
+
+io_files1.each do |f|
+
+  image = File.open(f)
+
+  sliders.image.attach io: image, filename: f.split('/').last
+
+  image.close
+end
 

@@ -1,23 +1,34 @@
-h1 Listing services
-
-table
+h1.text-center.my-4 Listing service
+= link_to new_service_path
+  btn.btn-sm.btn-primary.text-light
+    | Add services
+    i.fas.fa-plus-circle.ml-2
+table.table.table-.w-100.table-hover
   thead
     tr
+      th S.n
+      / th Comment
       th Name
       th Description
-      th
-      th
+      th Image
+      th Action
       th
 
   tbody
-    - @services.each do |service|
+    - @services.each.with_index(1) do |service, index|
       tr
+        td = index
+        / td = order.comment
         td = service.name
-        td = service.description
-        td = link_to 'Show', service
-        td = link_to 'Edit', edit_service_path(service)
-        td = link_to 'Destroy', service, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Service', new_service_path
+        td.text-justify = service.description
+        - if service.image.attached?
+          td
+            div style="height=100px"
+              = image_tag (service.image), class: '', style: "width:100px"
+        td.pr-0
+          = link_to service
+            i.fas.fa-eye.text-info
+          = link_to edit_service_path(service)
+            i.fas.fa-pencil-alt.text-info.ml-2
+          = link_to service, data: {confirm: 'Are you sure?'}, method: :delete
+            i.fas.fa-trash.text-danger.ml-2

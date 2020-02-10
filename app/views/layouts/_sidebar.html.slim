@@ -1,37 +1,38 @@
-.row.border.text-center.pt-3
-  .col-12.p-0
-  / = image_tag "uniquehydro.jpg", style: "width:85px;margin-top:0px"
+.row.border.text-center.pt-1
+  .col-12
+    =link_to dashboards_path
+      = image_tag "uniquehydro.jpg", style: "width:85px;margin-top:0px"
   .col-12.toggleHide
 .row
   .col-12.pr-0.border-right
     .sidebar.bg-white
       nav
         ul.nav.mt-5
-          = link_to dashboards_path, class: 'w-100'
-            li.nav-item.text-danger.p-3
-              i.fas.fa-home.mx-4
+          = link_to dashboards_path, class: 'w-100 text-decoration-none'
+            li.nav-item.text-secondary.p-3
+              i.fas.fa-home.mx-4.text-dark.fa-lg
               span.toggleHide = t 'dashboard'
-          = link_to services_path, class: 'w-100'
-            li.nav-item.text-danger.p-3
-              i.fas.fa-thumbs-up.mx-4
+          = link_to services_path, class: 'w-100 text-decoration-none'
+            li.nav-item.text-secondary.p-3
+              i.fas.fa-thumbs-up.mx-4.text-dark.fa-lg
               span.toggleHide = t 'services'
-          = link_to projects_path, class: 'w-100'
-            li.nav-item.text-danger.p-3
-              i.fas.fa-sticky-note.mx-4
+          = link_to projects_path, class: 'w-100 text-decoration-none'
+            li.nav-item.text-secondary.p-3
+              i.fas.fa-sticky-note.mx-4.text-dark.fa-lg
               span.toggleHide = t 'projects'
-          = link_to clients_path, class: 'w-100'
-            li.nav-item.text-danger.p-3
-              i.fas.fa-user.mx-4
+          = link_to clients_path, class: 'w-100 text-decoration-none'
+            li.nav-item.text-secondary.p-3
+              i.fas.fa-user.mx-4.text-dark.fa-lg
               span.toggleHide = t 'clients'
-          = link_to team_members_path, class: 'w-100'
-            li.nav-item.text-danger.p-3
-              i.fas.fa-users.mx-4
+          = link_to team_members_path, class: 'w-100 text-decoration-none'
+            li.nav-item.text-secondary.p-3
+              i.fas.fa-users.mx-4.text-dark.fa-lg
               span.toggleHide = t 'team'
-          = link_to slider_images_path, class: 'w-100'
-            li.nav-item.text-danger.p-3
-              i.fas.fa-images.mx-4
+          = link_to slider_images_path, class: 'w-100 text-decoration-none'
+            li.nav-item.text-secondary.p-3
+              i.fas.fa-images.mx-4.text-dark.fa-lg
               span.toggleHide = t 'sliderImage'
-          = link_to abouts_path, class: 'w-100'
-            li.nav-item.text-danger.p-3
-              i.fas.fa-comment-alt.mx-4
+          = link_to abouts_path, class: 'w-100 text-decoration-none'
+            li.nav-item.text-secondary.p-3
+              i.fas.fa-comment-alt.mx-4.text-dark.fa-lg
               span.toggleHide = t 'about_us'

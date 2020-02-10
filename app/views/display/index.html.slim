@@ -1,0 +1,61 @@
+section
+  #carouselExampleSlidesOnly.carousel.slide data-ride="carousel"
+    .carousel-inner
+      .carousel-item.active.mt-0
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[0])}) no-repeat; height: 80vh; background-size: cover;"
+      .carousel-item
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[1])}) no-repeat; height: 80vh; background-size: cover;"
+      .carousel-item
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[2])}) no-repeat; height: 80vh ; background-size: cover;"
+section.container-fluid.mt-5.bg-light.px-0
+  .row.mt-5.mr-0
+    -if @services.nil? == false
+      - @services.all.each do |service|
+        .col-4.d-flex.justify-content-center.px-0
+          .card.bg-dark.text-white.shadow-lg.p-3.mb-5.bg-white.rounded
+            div.img-thumbnail style="background: url(#{url_for(service.image)}) no-repeat; height: 320px;width:320px; background-size: cover;"
+            .card-img-overlay
+              h5.py-2.card-title.bg-dark
+        h2.text-center.pt-2 #{service.name}
+    -if @runningProjects.nil? == false
+      section.container-fluid.pb-5
+        h2.text-center.pb-2.mt-0 Running Projects
+        .row.pb-4
+          - @runningProjects.all.each do |project|
+            .col-6.mt-5.bg-light.rounded
+              div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 300px; background-size: cover;"
+              h4.text-danger.text-center = project.name
+              table.table-hover.w-100.text-dark.bg-light.border
+                tr
+                  td Project
+                  td = project.name
+                tr
+                  td Location
+                  td = project.location
+                tr
+                  td Client
+                  td = project.owner
+                tr
+                  td Scope of Work
+                  td = project.description
+    -if @completedProjects.nil? == false
+      section.container-fluid.pb-5
+        h2.text-center.pb-2 Completed Projects
+        .row.pb-4
+          - @completedProjects.all.each do |project|
+            .col-6.mt-5.bg-light.rounded
+              div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 300px; background-size: cover;"
+              h4.text-danger.text-center = project.name
+              table.table-hover.text-dark.border
+                tr
+                  td Project
+                  td = project.name
+                tr
+                  td Location
+                  td = project.location
+                tr
+                  td Client
+                  td = project.owner
+                tr
+                  td Scope of Work
+                  td = project.description

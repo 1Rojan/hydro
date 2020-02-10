@@ -1,21 +1,58 @@
-h1 Listing slider_images
+/ h1 Listing slider_images
+/
+/ table
+/   thead
+/     tr
+/       th Name
+/       th
+/       th
+/       th
+/
+/   tbody
+/     - @slider_images.each do |slider_image|
+/       tr
+/         td = slider_image.name
+/         td = link_to 'Show', slider_image
+/         td = link_to 'Edit', edit_slider_image_path(slider_image)
+/         td = link_to 'Destroy', slider_image, data: { confirm: 'Are you sure?' }, method: :delete
+/
+/ br
+/
+/ = link_to 'New Slider image', new_slider_image_path
 
-table
+
+
+h1.text-center.my-4 Listing slider_images
+= link_to new_slider_image_path
+  btn.btn-sm.btn-primary.text-light
+    | Add slider images
+    i.fas.fa-plus-circle.ml-2
+table.table.table-.w-100.table-hover
   thead
     tr
+      th S.n
       th Name
-      th
-      th
+      th Image
+      th Action
+      / th Status
       th
 
   tbody
-    - @slider_images.each do |slider_image|
+    - @slider_images.each.with_index(1) do |slider, index|
       tr
-        td = slider_image.name
-        td = link_to 'Show', slider_image
-        td = link_to 'Edit', edit_slider_image_path(slider_image)
-        td = link_to 'Destroy', slider_image, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Slider image', new_slider_image_path
+        td = index
+        / td = order.comment
+        td = slider.name
+        / td = project.status
+        - if slider.image.attached?
+          td
+            div style="height=100px"
+              -slider.image.each do |img|
+                = image_tag (img), class: '', style: "height:90px; margin-right:2px;"
+        td.pr-0
+          = link_to slider
+            i.fas.fa-eye.text-info
+          = link_to edit_slider_image_path(slider)
+            i.fas.fa-pencil-alt.text-info.ml-2
+          = link_to slider, data: {confirm: 'Are you sure?'}, method: :delete
+            i.fas.fa-trash.text-danger.ml-2
