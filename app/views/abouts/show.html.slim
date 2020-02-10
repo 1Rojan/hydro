@@ -1,9 +1,12 @@
 p#notice = notice
 
-p
-  strong Description:
-  = @about.description
-
-=> link_to 'Edit', edit_about_path(@about)
-'|
-=< link_to 'Back', abouts_path
+.col-12.mt-5.d-flex.justify-content-center
+  .card.shadow-lg.p-3.mb-5.bg-white.rounded
+    .card-body
+      p
+        strong
+          | Description :
+        card-text = @about.description
+    .card-body
+      = link_to 'Edit', edit_about_path(@about), class: 'card-link'
+      = link_to 'Back', abouts_path, class: 'card-link'

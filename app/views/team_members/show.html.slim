@@ -1,18 +1,27 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @team_member.name
-p
-  strong Position:
-  = @team_member.position
-p
-  strong Achievement:
-  = @team_member.achievement
-p
-  strong Department:
-  = @team_member.department
-
-=> link_to 'Edit', edit_team_member_path(@team_member)
-'|
-=< link_to 'Back', team_members_path
+.col-12.mt-5.d-flex.justify-content-center
+  .card.shadow-lg.p-3.mb-5.bg-white.rounded
+    .card-body
+      .row
+        .col-4
+          - if @team_member.image.attached?
+            div style="height=100px"
+              = image_tag (@team_member.image), style: "height:40vh"
+        .col-8
+          h5.card-title = @team_member.name
+          p
+            strong
+              | Achievement:
+            card-text.text-justify = @team_member.achievement
+          p
+            strong
+              | Position:
+            card-text = @team_member.position
+          p
+            strong
+              | Serveice_department:
+            card-text = @team_member.department.name
+    .card-body
+      = link_to 'Edit', edit_team_member_path(@team_member), class: 'card-link'
+      = link_to 'Back', team_members_path, class: 'card-link'

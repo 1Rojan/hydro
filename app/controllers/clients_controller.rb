@@ -69,6 +69,6 @@ class ClientsController <  DashboardsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_params
-      params.require(:client).permit(:name, :description)
+      params.require(:client).permit(:name, :description, :image)
     end
 end

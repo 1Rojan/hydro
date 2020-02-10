@@ -1,27 +1,112 @@
-= form_for @project do |f|
-  - if @project.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
-      ul
-        - @project.errors.full_messages.each do |message|
-          li = message
+/ = form_for @project do |f|
+/   - if @project.errors.any?
+/     #error_explanation
+/       h2 = "#{pluralize(@project.errors.count, "error")} prohibited this project from being saved:"
+/       ul
+/         - @project.errors.full_messages.each do |message|
+/           li = message
+/
+/   .field
+/     = f.label :name
+/     = f.text_field :name
+/   .field
+/     = f.label :location
+/     = f.text_field :location
+/   .field
+/     = f.label :owner
+/     = f.text_field :owner
+/   .field
+/     = f.label :description
+/     = f.text_field :description
+/   .field
+/     = f.label :construction_period
+/     = f.text_field :construction_period
+/   .field
+/     = f.label :status
+/     = f.number_field :status
+/   .field
+/     = f.file_field :image
+/   .actions = f.submit
+/
+row
+  .col-10.offset-1.border.mt-3
+    = form_for @project, :html => {:style => 'background-color:white;'} do |f|
+      - if @project.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@project.errors.count, "error")} prohibited this food_category from being saved:"
+          ul
+            - @project.errors.full_messages.each do |message|
+              li = message
+      .row.mt-5
+        .col-6
+          table
+            tr
+              td
+                = f.label :name
+              td
+                = f.text_field :name, class: 'form-control'
+            tr
+              td
+                = f.label :location
+              td
+                = f.text_field :location, class: 'form-control'
+            tr
+              td
+                = f.file_field :image, class: 'form-control imge', id:'imgInp'
+            tr
+              td
+                = f.label :construction_period
+              td
+                = f.text_field :construction_period, class: 'form-control'
+            tr
+              td
+                = f.label :description
+              td
+                = f.text_area :description, class: 'form-control'
+            tr
+              td
+              td.text-right
+                button.img.btn-md.bg-info.text-light.p-2.rounded
+                  | Upload Image
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :location
-    = f.text_field :location
-  .field
-    = f.label :owner
-    = f.text_field :owner
-  .field
-    = f.label :description
-    = f.text_field :description
-  .field
-    = f.label :construction_period
-    = f.text_field :construction_period
-  .field
-    = f.label :status
-    = f.number_field :status
-  .actions = f.submit
+        .col-6
+          table
+            tr
+              td
+                = f.label :status
+              td
+                = f.text_field :status, class: 'form-control'
+            tr
+              td
+              td
+                img#showImg alt=" " src="#" style="height:200px;"
+
+      .actions.mt-5.float-right = f.submit
+
+css:
+  .imge{
+    display: none;
+  }
+
+javascript:
+    document.querySelector('.img').addEventListener('click',function(e){
+        e.preventDefault();
+        var a = document.querySelector('.imge');
+        a.click();
+    })
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showImg').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });

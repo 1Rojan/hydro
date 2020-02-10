@@ -1,12 +1,34 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @service.name
-p
-  strong Description:
-  = @service.description
+/ p
+/   strong Name:
+/   = @service.name
+/ p
+/   strong Description:
+/   = @service.description
+/
+/ => link_to 'Edit', edit_service_path(@service)
+/ '|
+/ =< link_to 'Back', services_path
 
-=> link_to 'Edit', edit_service_path(@service)
-'|
-=< link_to 'Back', services_path
+.col-12.mt-5.d-flex.justify-content-center
+  .card.shadow-lg.p-3.mb-5.bg-white.rounded
+    .card-body
+      .row
+        .col-5
+          - if @service.image.attached?
+            div style="height=100px"
+              = image_tag (@service.image), style: "height:40vh"
+        .col-6
+          h5.card-title = @service.name
+          p
+            strong
+              | Description :
+            card-text = @service.description
+    / ul.list-group.list-group-flush
+    /   li.list-group-item Cras justo odio
+    /   li.list-group-item Dapibus ac facilisis in
+    /   li.list-group-item Vestibulum at eros
+    .card-body
+      = link_to 'Edit', edit_service_path(@service), class: 'card-link'
+      = link_to 'Back', services_path, class: 'card-link'

@@ -1,12 +1,18 @@
-p#notice = notice
 
-p
-  strong Name:
-  = @client.name
-p
-  strong Description:
-  = @client.description
-
-=> link_to 'Edit', edit_client_path(@client)
-'|
-=< link_to 'Back', clients_path
+.col-12.mt-5.d-flex.justify-content-center
+  .card.shadow-lg.p-3.mb-5.bg-white.rounded
+    .card-body
+      .row
+        .col-5
+          - if @client.image.attached?
+            div style="height=100px"
+              = image_tag (@client.image), style: "height:40vh"
+        .col-6
+          h5.card-title = @client.name
+          p
+            strong
+              | Description :
+            card-text = @client.description
+    .card-body
+      = link_to 'Edit', edit_client_path(@client), class: 'card-link'
+      = link_to 'Back', clients_path, class: 'card-link'

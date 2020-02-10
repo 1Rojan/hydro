@@ -1,0 +1,43 @@
+section
+  #carouselExampleSlidesOnly.carousel.slide data-ride="carousel"
+    .carousel-inner
+      .carousel-item.active.mt-0
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[0])}) no-repeat; height: 80vh; background-size: cover;"
+      .carousel-item
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[1])}) no-repeat; height: 80vh; background-size: cover;"
+      .carousel-item
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[2])}) no-repeat; height: 80vh ; background-size: cover;"
+section
+  -if @service.nil? == false
+    h2.text-center.bg-dark.text-light.py-2.px-0
+      =@service.name
+    .row.container-fluid.mt-5
+      .col-6
+        div.mx-auto.mt-0 style="background: url(#{asset_path("tower.jpg")}) no-repeat;height:400px"
+      .col-6.container-fluid
+        p
+          =@service.description
+  -if @team.nil? == false
+    h2.text-center.bg-dark.text-light.py-2.px-0
+      | Team
+    .row.container-fluid.mt-5
+      .col-4
+        / =image_tag(@team.image)
+        div.mx-auto.mt-0 style="background: url(#{url_for("#{@team.image}")}) no-repeat;height:400px"
+      .col-6.container-fluid
+        h3.font-weight-bold.mb-0
+          =@team.name
+        strong.text-secondary
+          =@team.position
+        p.text-justify.mt-4
+          =@team.achievement
+    -if @project.nil? == false
+      -@project.image
+      h2.text-center
+        =@project.name
+      p.text-justify
+        =@project.location
+      p.text-justify
+        =@project.owner
+      p.text-justify
+        =@project.description
