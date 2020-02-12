@@ -67,32 +67,18 @@ section.container-fluid.mt-5.wow.bounceInUp data-wow-duration="2s"
     = link_to "Show all", display_index_path(index: "services") , class: 'text-decoration-none btn btn-md rounded bg-primary text-light'
 
   //Mobile view
-  #carouselExampleControls0.carousel.slide.d-block.d-md-none data-ride="carousel"
-    .carousel-inner
-      -Service.all[0..1].each do |serv|
-        .carousel-item.active
-          .card.shadow-lg.mb-5.bg-white.rounded style=("width: 23rem;")
-            div.img-thumbnail style="background: url(#{asset_path("transistor.jpg")}) no-repeat; height: 200px; background-size: cover;"
-          .card-body.bg-light.border
-            h4.card-text.text-danger.text-center = serv.name
-            p.card-text.text-dark.text-justify = serv.description
-            span.float-right.ml-auto
-              = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger'
-      -Service.all[1..-1].each do |serv|
-        .carousel-item
-          .card.shadow-lg.mb-5.bg-white.rounded style=("width: 23rem;")
-            div.img-thumbnail style="background: url(#{asset_path("transistor.jpg")}) no-repeat; height: 200px; background-size: cover;"
-            .card-body.bg-light.border
-              h4.card-text.text-danger.text-center = serv.name
-              p.card-text.text-dark.text-justify = serv.description
-              span.float-right.ml-auto
-                = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger'
-      a.carousel-control-prev data-slide="prev" href="#carouselExampleControls0" role="button"
-        span.carousel-control-prev-icon aria-hidden="true"
-        span.sr-only Previous
-      a.carousel-control-next data-slide="next" href="#carouselExampleControls0" role="button"
-        span.carousel-control-next-icon aria-hidden="true"
-        span.sr-only Next
+  div.d-block.d-md-none
+    -Service.all[0..3].each do |serv|
+      .card.shadow-lg.bg-white.rounded style=("width: 21rem;")
+        div.img-thumbnail.px-0 style="background: url(#{asset_path("transistor.jpg")}) no-repeat; height: 200px; background-size: cover;"
+      .card-body.bg-light.border.mt-0
+        h4.card-text.text-danger.text-center = serv.name
+        p.card-text.text-dark.text-justify = serv.description
+        span.float-right.ml-auto.mb-5
+          = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger'
+    span.d-flex.justify-content-center.mt-4
+      = link_to "Show all", display_index_path(index: "services") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
+
 //Running projects
 section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInLeft data-wow-duration="2s"
   h2.text-center.pt-5.pb-2#runningProjects Running Projects
@@ -120,10 +106,12 @@ section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInLeft data-wow-du
   span.d-flex.justify-content-center.mt-4
     = link_to "Show all", display_index_path(index: "runningProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
 // Completed Projects
-section.container-fluid.wow.slideInRight data-wow-duration="2s"
-  h2.text-center.py-5#completedProjects Completed Projects
-  .row.pb-4
+section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInLeft data-wow-duration="2s"
+  h2.text-center.pt-5.pb-2#completedProjects Completed Projects
+  .row.pb-4.d-none.d-md-block
     - Project.where(status: 1)[0...2].each do |proj|
+      .col-md-6.mt-5
+        div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
       .col-md-6.mt-5.bg-light.pl-0.rounded
         h4.text-danger.text-center.my-3 = proj.name
         table.table.table-hover.w-100.text-dark
@@ -139,18 +127,17 @@ section.container-fluid.wow.slideInRight data-wow-duration="2s"
           tr
             td.p-2 Scope of Work
             td = proj.description
-              / span.float-right
-      .col-md-6.mt-5
-        div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
-  span.d-flex.justify-content-center.mt-4
-    = link_to "Show all", display_index_path(index: "runningProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
+            / span.float-right
 
-    //mobile view
+    span.d-flex.justify-content-center
+      = link_to "Show all", display_index_path(index: "completedProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
+
+    //mobile view Completed projects
   .row.pb-4.d-block.d-md-none
     - Project.where(status: 1)[0...2].each do |proj|
       .col-md-6
         div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
-        span.d-flex.justify-content-center.mx-auto.mt-4
+        / span.d-flex.justify-content-center.mx-auto.mt-4
 
       .col-md-6
         h4.text-danger.text-center.my-3 = proj.name
@@ -167,8 +154,10 @@ section.container-fluid.wow.slideInRight data-wow-duration="2s"
           tr
             td Scope of Work
             td = proj.description
-  span.d-flex.justify-content-center.mx-auto.mt-4
-    = link_to "Show all", display_index_path(index: "completedProjects") , class: 'd-block d-md-none text-decoration-none btn btn-md rounded bg-light text-info border border-info px-5'
+    span.d-flex.justify-content-center.mx-auto
+      = link_to "Show all", display_index_path(index: "completedProjects") , class: 'd-block d-md-none text-decoration-none btn btn-md rounded bg-light text-info border border-info px-5'
+
+
 //Clients
 section.container-fluid.mt-5.px-0.whitegradient.wow.bounceInUp data-wow-duration="2s"
   h2.text-center.pt-4#clients Our Clients
@@ -186,7 +175,7 @@ section.container-fluid.mt-5.px-0.whitegradient.wow.bounceInUp data-wow-duration
 // Our Team
 section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s"
   h2.text-center.text-dark.pb-3.pt-4.mb-0.font-weight-bolder#teams Our Team
-  .row.mt-3
+  .row.mt-3.d-none.d-md-block
     .col-12
       ul.d-flex.justify-content-center.pb-2#myTab.nav.nav-tabs.removetopborder role="tablist"
         li.nav-item.mx-1.rounded
@@ -267,7 +256,7 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
                         / img.card-img-top alt="..." src="..." /
                         .card-body
                           h5.text-center.card-title.text-light.mb-1
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
                           p.text-center.mb-1
                             strong
                               = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
@@ -284,7 +273,7 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
                           / img.card-img-top alt="..." src="..." /
                           .card-body
                             h5.text-center.card-title.text-light.mb-1
-                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                              = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
                             p.text-center.mb-1
                               strong
                                 = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
@@ -301,7 +290,7 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
                           / img.card-img-top alt="..." src="..." /
                           .card-body
                             h5.text-center.card-title.text-light.mb-1
-                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                              = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
                             p.text-center.mb-1
                               strong
                                 = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
@@ -326,7 +315,7 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
                         / img.card-img-top alt="..." src="..." /
                         .card-body
                           h5.text-center.card-title.text-light.mb-1
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
                           p.text-center.mb-1
                             strong
                               = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
@@ -343,7 +332,7 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
                           / img.card-img-top alt="..." src="..." /
                           .card-body
                             h5.text-center.card-title.text-light.mb-1
-                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                              = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
                             p.text-center.mb-1
                               strong
                                 = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
@@ -360,7 +349,7 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
                           / img.card-img-top alt="..." src="..." /
                           .card-body
                             h5.text-center.card-title.text-light.mb-1
-                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                              = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
                             p.text-center.mb-1
                               strong
                                 = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
@@ -374,13 +363,75 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
               span.carousel-control-next-icon.bg-dark aria-hidden="true"
               span.sr-only Next
 
+      // mobile view team
+  .row.mt-3.d-block.d-md-none
+    .col-12
+      ul.d-flex.justify-content-center.pb-2#myTab1.nav.nav-tabs.removetopborder role="tablist"
+        li.nav-item.mx-1.rounded
+          a#home-tab1.nav-link.active.bg-light.text-dark aria-controls="home" aria-selected="true" data-toggle="tab" href="#home1" role="tab" = Department.first.name
+        li.nav-item.mx-1
+          a#profile-tab1.nav-link.bg-light.text-dark aria-controls="profile" aria-selected="false" data-toggle="tab" href="#profile1" role="tab" = Department.second.name
+        li.nav-item.mx-1
+          a#contact-tab1.nav-link.bg-light.text-dark aria-controls="contact" aria-selected="false" data-toggle="tab" href="#contact1" role="tab" = Department.third.name
+      #myTabContent1.tab-content
+        #home1.tab-pane.fade.show.active aria-labelledby="home-tab1" role="tabpanel"
+          .row
+            - Department.first.team_member.all.each do |team|
+              .col-12.d-flex.justify-content-around
+                .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                  div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                  / img.card-img-top alt="..." src="..." /
+                  .card-body
+                    h5.text-center.card-title.text-light.mb-1
+                      = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                    p.text-center.mb-1
+                      strong
+                        = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                    p.card-text.bg-light.py-2.px-0.text-justify
+                      = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                      / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
+        #profile1.tab-pane.fade aria-labelledby="profile-tab1" role="tabpanel"
+          .row
+            - Department.second.team_member.all.each do |team|
+              .col-12.d-flex.justify-content-around
+                .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                  div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                  / img.card-img-top alt="..." src="..." /
+                  .card-body
+                    h5.text-center.card-title.text-light.mb-1
+                      = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                    p.text-center.mb-1
+                      strong
+                        = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                    p.card-text.bg-light.py-2.px-0.text-justify
+                      = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                      / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
+        #contact1.tab-pane.fade aria-labelledby="contact-tab1" role="tabpanel"
+          .row
+            - Department.third.team_member.all.each do |team|
+              .col-12.d-flex.justify-content-around
+                .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                  div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                  / img.card-img-top alt="..." src="..." /
+                  .card-body
+                    h5.text-center.card-title.text-light.mb-1
+                      = link_to "#{team.name}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                    p.text-center.mb-1
+                      strong
+                        = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                    p.card-text.bg-light.py-2.px-0.text-justify
+                      = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
 //Contact us
-/ section.container-fluid.mt-5.whitegradient#contact_us.wow.bounceInUp data-wow-duration="2s"
+section.container-fluid.mt-5.whitegradient#contact_us.wow.bounceInUp data-wow-duration="2s"
   h2.text-center.my-5.pt-4 Contact us
   .row
-    .col-6
-      iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3532.9729120334446!2d85.32615915001384!3d27.687232082899484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnique%20Hydro%20and%20Electric%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1580118794250!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen=""
-    .col-6
+    .col-md-6
+      div style="width"
+      div.d-none.d-md-block
+        iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3532.9729120334446!2d85.32615915001384!3d27.687232082899484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnique%20Hydro%20and%20Electric%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1580118794250!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen=""
+      div.d-block.d-md-none
+        iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3532.9729120334446!2d85.32615915001384!3d27.687232082899484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnique%20Hydro%20and%20Electric%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1580118794250!5m2!1sen!2snp" width="330px" height="330px " style="border:0;" allowfullscreen=""
+    .col-md-6
       form
         .form-group
           label for="exampleInputEmail1"  Your Name

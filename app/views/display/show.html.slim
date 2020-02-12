@@ -12,22 +12,24 @@ section
     h2.text-center.bg-dark.text-light.py-2.px-0
       =@service.name
     .row.container-fluid.mt-5
-      .col-6
+      .col-md-6
         div.mx-auto.mt-0 style="background: url(#{asset_path("tower.jpg")}) no-repeat;height:400px"
-      .col-6.container-fluid
-        p
+      .col-md-6.container-fluid
+        p.mt-3
           =@service.description
   -if @team.nil? == false
     h2.text-center.bg-dark.text-light.py-2.px-0
       | Team
     .row.container-fluid.mt-5
-      .col-4
+      .col-md-4
         / =image_tag(@team.image)
-        div.mx-auto.mt-0 style="background: url(#{url_for("#{@team.image}")}) no-repeat;height:400px"
-      .col-6.container-fluid
-        h3.font-weight-bold.mb-0
+        div.mx-auto.mt-0 style="background: url(#{url_for(@team.image)}) no-repeat;height:400px"
+      .col-md-6.container-fluid
+        h3.font-weight-bold.mb-0.d-none.d-md-block
+        h3.text-center.font-weight-bold.mb-0.d-block.d-md-none
           =@team.name
-        strong.text-secondary
+        strong.text-secondary.d-none.d-md-block
+        strong.text-center.text-secondary.d-block.d-md-none
           =@team.position
         p.text-justify.mt-4
           =@team.achievement
