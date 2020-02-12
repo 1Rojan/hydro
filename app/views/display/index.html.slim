@@ -59,3 +59,12 @@ section.container-fluid.mt-5.bg-light.px-0
                 tr
                   td Scope of Work
                   td = project.description
+
+    - if @clients.nil? == false
+      - Client.all.each do |clien|
+        .col-4.d-flex.justify-content-center.px-0
+          .card.bg-dark.text-white.shadow-lg.p-3.mb-5.bg-white.rounded
+            div.img-thumbnail style="background: url(#{url_for(clien.image)}) no-repeat; height: 320px;width:320px; background-size: cover;"
+            .card-img-overlay
+              h5.py-2.card-title.bg-dark
+                = link_to "#{clien.name}", display_path(clien, client_id: clien.id), class: 'text-decoration-none text-light'

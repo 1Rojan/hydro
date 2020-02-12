@@ -1,21 +1,5 @@
-/ = form_for @slider_image do |f|
-/   - if @slider_image.errors.any?
-/     #error_explanation
-/       h2 = "#{pluralize(@slider_image.errors.count, "error")} prohibited this slider_image from being saved:"
-/       ul
-/         - @slider_image.errors.full_messages.each do |message|
-/           li = message
-/
-/   .field
-/     = f.label :name
-/     = f.text_field :name
-/   .field
-/     = f.file_field :image, multiple: true
-/
-/   .actions = f.submit
-
 row
-  .col-10.offset-1.border.mt-3
+  .col-11.offset-1.mt-3
     = form_for @slider_image, :html => {:style => 'background-color:white;'} do |f|
       - if @slider_image.errors.any?
         #error_explanation1
@@ -33,7 +17,7 @@ row
                 = f.text_field :name, class: 'form-control'
             tr
               td
-                = f.file_field :image,multiple: true, class: 'form-control imge', id:'imgInp'
+                = f.file_field :image,multiple: true, class: 'form-control d-none', id:'imgInp'
             tr
               td
               td.text-right
@@ -43,33 +27,4 @@ row
           tr
             td
               img#showImg alt=" " src="#" style="height:200px;"
-      .actions.mt-5.float-right = f.submit
-
-css:
-  .imge{
-    display: none;
-  }
-
-javascript:
-
-    document.querySelector('.img').addEventListener('click', function (e) {
-        e.preventDefault();
-        var a = document.querySelector('.imge');
-        a.click();
-    })
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#showImg').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    $("#imgInp").change(function () {
-        readURL(this);
-    });
+      .actions.mt-5 = f.submit

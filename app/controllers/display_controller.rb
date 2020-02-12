@@ -21,6 +21,8 @@ class DisplayController < ApplicationController
       @runningProjects = Project.all.where(status: 0)
     elsif params[:index] == "completedProjects"
       @completedProjects = Project.all.where(status: 1)
+    elsif params[:index] == "clients"
+      @clients = Client.all
     end
   end
 end

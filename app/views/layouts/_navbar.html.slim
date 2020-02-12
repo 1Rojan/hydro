@@ -1,7 +1,7 @@
 / nav.navbar.navbar-expand-lg.me_sticky.py-2.px-0 style=("background-color: #00498a;z-index:2")
-nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.position-absolute
+nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.position-absolute.container-fluid
   =link_to root_path do
-    div style='background: url("#{asset_path("unique.png")}");height:65px;width:110px;background-size:contain'
+    div style='background: url("#{asset_path("unique.png")}");height:75px;width:120px;background-size:contain'
   / =image_tag("uniquehydro.jpg")
   / a.navbar-brand href="#"  Unique Hydro
   button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
@@ -9,7 +9,7 @@ nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.positio
   #navbarNavDropdown.collapse.navbar-collapse
     ul.navbar-nav.ml-auto
       li.nav-item.active.mr-5
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#index"
           | Home
           span.sr-only (current)
       li.nav-item.dropdown.mr-5
@@ -23,14 +23,14 @@ nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.positio
         a#navbarDropdownMenuLink1.nav-link.text-light.font-weight-bolder style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
           | Projects
         .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-          a.dropdown-item.fa-sm href="#"  Running Projects
-          a.dropdown-item.fa-sm href="#"  Completed Projects
+          a.dropdown-item.fa-sm href="/#runningProjects"  Running Projects
+          a.dropdown-item.fa-sm href="/#completedProjects"  Completed Projects
       li.nav-item.mr-5
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"  Clients
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#clients"  Clients
       li.nav-item.mr-5
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"  Our Team
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#teams"  Our Team
       li.nav-item
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="#"  Contact Us
+        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#contact_us"  Contact Us
 css:
   nav a::after{
     content: '';
@@ -38,16 +38,21 @@ css:
     height: 5px;
     width: 0%;
     background-color: #bf1e1e;
-    transition: all ease-in-out 250ms;
+    top: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
   }
 
   nav a:hover::after{
     width: 100%;
+    transform: scale(1,1);
   }
-  nav
+  nav a
   {
-    /*opacity: 0.85;*/
-    /*filter: alpha(opacity=80);*/
+    font-size: 16px;
+    font-family: verdana, arial, helvetica, sans-serif !important;
   }
 
   .primarycolor {
@@ -57,7 +62,7 @@ css:
     background-color: transparent;
   }
   .black{
-    background-color: rgba(43, 48, 61,0.88);
+    background-color: #343a40;
     position: fixed!important;
     padding-bottom: 1px;
     transition:  all ease-in-out 250ms;

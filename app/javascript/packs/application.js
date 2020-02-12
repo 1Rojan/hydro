@@ -15,3 +15,29 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+
+
+document.addEventListener('turbolinks:load', function(){
+    document.querySelector('.img').addEventListener('click',function(e){
+        e.preventDefault();
+        var a = document.querySelector('.imge');
+        a.click();
+    })
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#showImg').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imgInp").change(function () {
+        readURL(this);
+    });
+});

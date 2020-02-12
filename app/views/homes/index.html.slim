@@ -1,60 +1,62 @@
 //Carousel
-section
+section#index
   #carouselExampleSlidesOnly.carousel.slide data-ride="carousel"
     .carousel-inner
       .carousel-item.active.mt-0
-        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[0])}) no-repeat; height: 80vh; background-size: cover;"
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[0])}) no-repeat; height: 100vh; background-size: cover;"
       .carousel-item
-        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[1])}) no-repeat; height: 80vh; background-size: cover;"
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[1])}) no-repeat; height: 100vh; background-size: cover;"
       .carousel-item
-        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[2])}) no-repeat; height: 80vh ; background-size: cover;"
-/ div style=" height: 450px; background-size: cover;"
-          = image_tag("slide5.jpg")
-/ img.d-block.w-100 alt=("Third slide") src=(".../800x400?auto=yes&bg=555&fg=333&text=Third slide") /
+        div.mx-auto.mt-0.nnav style="background: url(#{url_for(SliderImage.first.image[2])}) no-repeat; height: 100vh ; background-size: cover;"
+
 //Intro
-section.container-fluid.f
+section.container-fluid style="background: #343a40"
   h2.text-center.py-4.text-light= About.first.title
-  p.text-justify.text-light.pb-4 = About.first.description
+  p.d-none.d-md-block.text-center.text-light.px-5.pb-5.pt-3 = About.first.description
+  p.d-block.d-md-none.text-light.px-2.text-justify.pb-5.pt-3 = About.first.description
 
 // Services
-section.container-fluid.mt-5.bg-light
-  h2.my-5.text-center
+section.container-fluid.mt-5.wow.bounceInUp data-wow-duration="2s"
+  h1.my-5.text-center
     |Services
-  #carouselExampleControls.carousel.slide data-ride="carousel"
+  #carouselExampleControls.carousel.slide.d-none.d-md-block data-ride="carousel"
     .carousel-inner
       .carousel-item.active
-        .col-12.d-flex.justify-content-around
-          - Service.all[0...3].each do |serv|
-            .card.shadow-lg.p-3.mb-5.bg-white.rounded style=("width: 23rem;")
+        .col-12.d-none.d-flex.justify-content-around
+          - Service.all[0..2].each do |serv|
+            .card.shadow-lg.mb-5.bg-white.rounded style=("width: 23rem;")
               div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
               / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
-              .card-body.primarycolor
-                h4.card-text.text-light.text-center = serv.name
-                p.card-text.text-light.text-justify = serv.description
+              .card-body.bg-light.border
+                h4.card-text.text-danger.text-center = serv.name
+                p.card-text.text-dark.text-justify = serv.description
                 span.float-right.ml-auto
-                  = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark'
-      .carousel-item
-        .col-12.d-flex.justify-content-around
-          - Service.all[3...6].each do |serv|
-            .card.shadow-lg.p-3.mb-5.bg-white.rounded style=("width: 23rem;")
-              div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
-              / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
-              .card-body.primarycolor
-                h4.card-text.text-light.text-center = serv.name
-                p.card-text.text-light.text-justify = serv.description
-                span.float-right.ml-auto
-                  = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark'
-      .carousel-item
-        .col-12.d-flex.justify-content-around
-          - Service.all[6...9].each do |serv|
-            .card.shadow-lg.p-3.mb-5.bg-white.rounded style=("width: 23rem;")
-              div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
-              / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
-              .card-body.primarycolor
-                h4.card-text.text-light.text-center = serv.name
-                p.card-text.text-light.text-justify = serv.description
-                span.float-right.ml-auto
-                  = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark'
+                  = link_to "view", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger'
+      -if Service.all[3..5].nil? == false
+        .carousel-item
+          .col-12.d-flex.justify-content-around
+            - Service.all[3..5].each do |serv|
+              .card.shadow-lg.mb-5.bg-white.rounded style=("width: 23rem;")
+                div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
+                / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
+                .card-body.bg-light.border
+                  h4.card-text.text-danger.text-center = serv.name
+                  p.card-text.text-dark.text-justify = serv.description
+                  span.float-right.ml-auto
+                    = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger'
+      -if Service.all[5..7].nil? == true
+        .carousel-item
+          .col-12.d-flex.justify-content-around
+            - Service.all[5..7].each do |serv|
+              .card.shadow-lg.mb-5.bg-white.rounded style=("width: 23rem;")
+              -if serv.image == true
+                div.img-thumbnail style="background: url(#{url_for(serv.image)}) no-repeat; height: 200px; background-size: cover;"
+                / img.card-img-top alt=("Card image cap") src=(".../100px180/?text=Image cap") /
+                .card-body.bg-light.border
+                  h4.card-text.text-danger.text-center = serv.name
+                  p.card-text.text-dark.text-justify = serv.description
+                  span.float-right.ml-auto
+                    = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger '
     a.carousel-control-prev.mt-5 data-slide="prev" href="#carouselExampleControls" role="button" style="width:50px;"
       span.carousel-control-prev-icon.bg-dark aria-hidden="true"
       span.sr-only Previous
@@ -64,40 +66,94 @@ section.container-fluid.mt-5.bg-light
   / span.d-flex.justify-content-center.mb-3
     = link_to "Show all", display_index_path(index: "services") , class: 'text-decoration-none btn btn-md rounded bg-primary text-light'
 
-
+  //Mobile view
+  #carouselExampleControls0.carousel.slide.d-block.d-md-none data-ride="carousel"
+    .carousel-inner
+      -Service.all[0..1].each do |serv|
+        .carousel-item.active
+          .card.shadow-lg.mb-5.bg-white.rounded style=("width: 23rem;")
+            div.img-thumbnail style="background: url(#{asset_path("transistor.jpg")}) no-repeat; height: 200px; background-size: cover;"
+          .card-body.bg-light.border
+            h4.card-text.text-danger.text-center = serv.name
+            p.card-text.text-dark.text-justify = serv.description
+            span.float-right.ml-auto
+              = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger'
+      -Service.all[1..-1].each do |serv|
+        .carousel-item
+          .card.shadow-lg.mb-5.bg-white.rounded style=("width: 23rem;")
+            div.img-thumbnail style="background: url(#{asset_path("transistor.jpg")}) no-repeat; height: 200px; background-size: cover;"
+            .card-body.bg-light.border
+              h4.card-text.text-danger.text-center = serv.name
+              p.card-text.text-dark.text-justify = serv.description
+              span.float-right.ml-auto
+                = link_to "View", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark border-danger'
+      a.carousel-control-prev data-slide="prev" href="#carouselExampleControls0" role="button"
+        span.carousel-control-prev-icon aria-hidden="true"
+        span.sr-only Previous
+      a.carousel-control-next data-slide="next" href="#carouselExampleControls0" role="button"
+        span.carousel-control-next-icon aria-hidden="true"
+        span.sr-only Next
 //Running projects
-section.container-fluid.primarycolor.text-light.pb-5
-  h2.text-center.pt-5.pb-2 Running Projects
+section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInLeft data-wow-duration="2s"
+  h2.text-center.pt-5.pb-2#runningProjects Running Projects
   .row.pb-4
     - Project.where(status: 0)[0...2].each do |proj|
-      .col-6.mt-5.pr-0
+      .col-md-6.mt-5
         div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
-      .col-6.mt-5.bg-light.pl-0.rounded
-        h4.text-danger.text-center = proj.name
-        table.table.w-100.text-dark
+      .col-md-6.mt-5.bg-light.pl-0.rounded
+        h4.text-danger.text-center.my-3 = proj.name
+        table.table.table-hover.w-100.text-dark
           tr
-            td Project
+            td.p-2 Project
             td = proj.name
           tr
-            td Location
+            td.p-2 Location
             td = proj.location
           tr
-            td Client
+            td.p-2 Client
             td = proj.owner
           tr
-            td Scope of Work
+            td.p-2 Scope of Work
             td = proj.description
               / span.float-right
 
-  span.d-flex.justify-content-center
-    = link_to "Show all", display_index_path(index: "runningProjects") , class: 'text-decoration-none btn btn-md rounded bg-light text-secondary px-5'
+  span.d-flex.justify-content-center.mt-4
+    = link_to "Show all", display_index_path(index: "runningProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
 // Completed Projects
-section.container-fluid
-  h2.text-center.py-5 Completed Projects
+section.container-fluid.wow.slideInRight data-wow-duration="2s"
+  h2.text-center.py-5#completedProjects Completed Projects
   .row.pb-4
     - Project.where(status: 1)[0...2].each do |proj|
-      .col-6.mt-5
-        h4.text-danger.text-center = proj.name
+      .col-md-6.mt-5.bg-light.pl-0.rounded
+        h4.text-danger.text-center.my-3 = proj.name
+        table.table.table-hover.w-100.text-dark
+          tr
+            td.p-2 Project
+            td = proj.name
+          tr
+            td.p-2 Location
+            td = proj.location
+          tr
+            td.p-2 Client
+            td = proj.owner
+          tr
+            td.p-2 Scope of Work
+            td = proj.description
+              / span.float-right
+      .col-md-6.mt-5
+        div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+  span.d-flex.justify-content-center.mt-4
+    = link_to "Show all", display_index_path(index: "runningProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
+
+    //mobile view
+  .row.pb-4.d-block.d-md-none
+    - Project.where(status: 1)[0...2].each do |proj|
+      .col-md-6
+        div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+        span.d-flex.justify-content-center.mx-auto.mt-4
+
+      .col-md-6
+        h4.text-danger.text-center.my-3 = proj.name
         table.table.w-100.table-hover
           tr
             td Project
@@ -111,31 +167,25 @@ section.container-fluid
           tr
             td Scope of Work
             td = proj.description
-      .col-6
-        div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
-    span.d-flex.justify-content-center.mx-auto.mt-4
-      = link_to "Show all", display_index_path(index: "completedProjects") , class: 'text-decoration-none btn btn-md rounded bg-primary text-light px-5'
-  hr
+  span.d-flex.justify-content-center.mx-auto.mt-4
+    = link_to "Show all", display_index_path(index: "completedProjects") , class: 'd-block d-md-none text-decoration-none btn btn-md rounded bg-light text-info border border-info px-5'
 //Clients
-section.container-fluid.mt-5.bg-light.px-0
-  h2.text-center.pt-2 Our Clients
+section.container-fluid.mt-5.px-0.whitegradient.wow.bounceInUp data-wow-duration="2s"
+  h2.text-center.pt-4#clients Our Clients
   .row.mt-5.mr-0
-    - Client.all.each do |clien|
-      .col-4.d-flex.justify-content-center.px-0
+    - Client.all[0...6].each do |clien|
+      .col-md-4.d-flex.justify-content-center.px-0
         .card.bg-dark.text-white.shadow-lg.p-3.mb-5.bg-white.rounded
           div.img-thumbnail style="background: url(#{url_for(clien.image)}) no-repeat; height: 320px;width:320px; background-size: cover;"
           .card-img-overlay
             h5.py-2.card-title.bg-dark
               = link_to "#{clien.name}", display_path(clien, client_id: clien.id), class: 'text-decoration-none text-light'
-
-                / = image_tag (person.image), style: 'width: 350px; background-size: cover;'
-                / div style="background: url(#{asset_path("slide1.jpg")}) no-repeat; height: 350px; background-size: cover;"
-          / div.mt-2 style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+  span.d-flex.justify-content-center.mx-auto.mt-1.mb-5
+    = link_to "Show all", display_index_path(index: "clients") , class: 'text-decoration-none btn btn-md rounded bg-light text-info border border-info px-5'
 
 // Our Team
-
-section#overlay.container-fluid.mt-5.bckimg
-  h2.text-center.text-light.pb-3.pt-2.mb-0.font-weight-bolder Our Team
+section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s"
+  h2.text-center.text-dark.pb-3.pt-4.mb-0.font-weight-bolder#teams Our Team
   .row.mt-3
     .col-12
       ul.d-flex.justify-content-center.pb-2#myTab.nav.nav-tabs.removetopborder role="tablist"
@@ -151,47 +201,54 @@ section#overlay.container-fluid.mt-5.bckimg
             .carousel-inner
               .carousel-item.active
                 .row
-                  - Department.first.team_member[0...3].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center
+                  - Department.first.team_member[0...4].each do |team|
+                    .col-3.d-flex.justify-content-around
+                      .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                        div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                        / img.card-img-top alt="..." src="..." /
+                        .card-body
+                          h5.text-center.card-title.text-light.mb-1
+                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                          p.text-center.mb-1
                             strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2.text-justify.text-light style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                          p.card-text.bg-light.py-2.px-0.text-justify
+                            = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
                             / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
-              .carousel-item
-                .row
-                  - Department.first.team_member[0...3].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center.text-light
-                            strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2.text-justify style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
-              .carousel-item
-                .row
-                  - Department.first.team_member[3...6].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center.text-light
-                            strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2.text-justify style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+              -if Department.first.team_member[4...8].nil? == false
+                .carousel-item
+                  .row
+                    - Department.first.team_member[4...8].each do |team|
+                      .col-3.d-flex.justify-content-around
+                        .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                          div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                          / img.card-img-top alt="..." src="..." /
+                          .card-body
+                            h5.text-center.card-title.text-light.mb-1
+                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            p.text-center.mb-1
+                              strong
+                                = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            p.card-text.bg-light.py-2.px-0.text-justify
+                              = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
+              -if Department.first.team_member[8...12].nil? == false
+                .carousel-item
+                  .row
+                    - Department.first.team_member[8...12].each do |team|
+                      .col-3.d-flex.justify-content-around
+                        .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                          div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                          / img.card-img-top alt="..." src="..." /
+                          .card-body
+                            h5.text-center.card-title.text-light.mb-1
+                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            p.text-center.mb-1
+                              strong
+                                = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            p.card-text.bg-light.py-2.px-0.text-justify
+                              = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
             a.carousel-control-prev data-slide="prev" href="#carouselExampleControls1" role="button" style="width:36px;"
               span.carousel-control-prev-icon.bg-dark aria-hidden="true"
               span.sr-only Previous
@@ -203,46 +260,54 @@ section#overlay.container-fluid.mt-5.bckimg
             .carousel-inner
               .carousel-item.active
                 .row
-                  - Department.second.team_member[0...3].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center.text-light
+                  - Department.second.team_member[0...4].each do |team|
+                    .col-3.d-flex.justify-content-around
+                      .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                        div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                        / img.card-img-top alt="..." src="..." /
+                        .card-body
+                          h5.text-center.card-title.text-light.mb-1
+                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                          p.text-center.mb-1
                             strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2.text-justify style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
-              .carousel-item
-                .row
-                  - Department.second.team_member[0...3].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center.text-light
-                            strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2.text-justify style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
-              .carousel-item
-                .row
-                  - Department.second.team_member[3...6].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center.text-light
-                            strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2.text-justify style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                          p.card-text.bg-light.py-2.px-0.text-justify
+                            = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
+              -if Department.second.team_member[4...8].nil? == false
+                .carousel-item
+                  .row
+                    - Department.second.team_member[4...8].each do |team|
+                      .col-3.d-flex.justify-content-around
+                        .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                          div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                          / img.card-img-top alt="..." src="..." /
+                          .card-body
+                            h5.text-center.card-title.text-light.mb-1
+                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            p.text-center.mb-1
+                              strong
+                                = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            p.card-text.bg-light.py-2.px-0.text-justify
+                              = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
+              -if Department.second.team_member[8...12].nil? == false
+                .carousel-item
+                  .row
+                    - Department.second.team_member[8...12].each do |team|
+                      .col-3.d-flex.justify-content-around
+                        .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                          div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                          / img.card-img-top alt="..." src="..." /
+                          .card-body
+                            h5.text-center.card-title.text-light.mb-1
+                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            p.text-center.mb-1
+                              strong
+                                = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            p.card-text.bg-light.py-2.px-0.text-justify
+                              = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
             a.carousel-control-prev data-slide="prev" href="#carouselExampleControls2" role="button" style="width:36px;"
               span.carousel-control-prev-icon.bg-dark aria-hidden="true"
               span.sr-only Previous
@@ -254,45 +319,54 @@ section#overlay.container-fluid.mt-5.bckimg
             .carousel-inner
               .carousel-item.active
                 .row
-                  - Department.third.team_member[0...3].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0 = team.name
-                          p.text-center.text-light
+                  - Department.third.team_member[0...4].each do |team|
+                    .col-3.d-flex.justify-content-around
+                      .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                        div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                        / img.card-img-top alt="..." src="..." /
+                        .card-body
+                          h5.text-center.card-title.text-light.mb-1
+                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                          p.text-center.mb-1
                             strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2 style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
-              .carousel-item
-                .row
-                  - Department.third.team_member[0...3].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center.text-light
-                            strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2 style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
-              .carousel-item
-                .row
-                  - Department.third.team_member[3...6].each do |team|
-                    .col-4.d-flex.justify-content-around
-                      .card style=("width: 21rem;background:#385577")
-                        div.mt-2.mx-auto.rounded-circle.img-thumbnail style="background: url(#{url_for(team.image)}) no-repeat; height: 145px;width: 145px; background-size: cover; background-position:center;"
-                        .card-body.p-1
-                          h5.text-center.card-title.text-light.mb-0
-                            = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none text-light font-weight-bolder'
-                          p.text-center.text-light
-                            strong
-                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none text-light'
-                          p.card-text.bg-light.p-2 style=("color:#385577;")
-                            = link_to "#{team.achievement}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                          p.card-text.bg-light.py-2.px-0.text-justify
+                            = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
+              -if Department.third.team_member[4...8].nil? == false
+                .carousel-item
+                  .row
+                    - Department.third.team_member[4...8].each do |team|
+                      .col-3.d-flex.justify-content-around
+                        .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                          div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                          / img.card-img-top alt="..." src="..." /
+                          .card-body
+                            h5.text-center.card-title.text-light.mb-1
+                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            p.text-center.mb-1
+                              strong
+                                = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            p.card-text.bg-light.py-2.px-0.text-justify
+                              = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
+              -if Department.third.team_member[8...12].nil? == false
+                .carousel-item
+                  .row
+                    - Department.third.team_member[8...12].each do |team|
+                      .col-3.d-flex.justify-content-around
+                        .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
+                          div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                          / img.card-img-top alt="..." src="..." /
+                          .card-body
+                            h5.text-center.card-title.text-light.mb-1
+                              = link_to "#{team.name}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none font-weight-bolder'
+                            p.text-center.mb-1
+                              strong
+                                = link_to "#{team.position}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                            p.card-text.bg-light.py-2.px-0.text-justify
+                              = link_to "#{team.achievement[0...200] + '...'}", display_path(team, team_id: team.id), class: 'text-decoration-none'
+                              / = link_to "#{team.achievement}", {:controller => "display", :action => "index", :team_id => team.id}, class: 'text-decoration-none'
             a.carousel-control-prev data-slide="prev" href="#carouselExampleControls3" role="button" style="width:36px;"
               span.carousel-control-prev-icon.bg-dark aria-hidden="true"
               span.sr-only Previous
@@ -301,8 +375,8 @@ section#overlay.container-fluid.mt-5.bckimg
               span.sr-only Next
 
 //Contact us
-section.container-fluid.mt-5
-  h2.text-center.my-5 Contact us
+/ section.container-fluid.mt-5.whitegradient#contact_us.wow.bounceInUp data-wow-duration="2s"
+  h2.text-center.my-5.pt-4 Contact us
   .row
     .col-6
       iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3532.9729120334446!2d85.32615915001384!3d27.687232082899484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnique%20Hydro%20and%20Electric%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1580118794250!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen=""
@@ -321,32 +395,6 @@ section.container-fluid.mt-5
         .form-group.mt-3
           label for="exampleInputPassword1"  Your Message
           textarea.w-100.form-control placeholder="Message"
-        button.btn-primary.btn-lg.text-ligh.mx-auto.p-1 Submit
+        button.btn.btn-primary.btn-lg.text-ligh.mx-auto.p-1 Submit
 
-css:
 
-  .bckimg {
-    background-image: url("#{asset_path("tower.jpg")}");
-    height: 100vh;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-
-  }
-
-  .gr {
-    opacity: 0.85;
-    filter: alpha(opacity=80);
-  }
-
-  .nnav {
-    filter: brightness(80%);
-  }
-
-  .f {
-    background-color: #2b4d76;
-  }
-
-  .removetopborder {
-    border: none;
-  }
