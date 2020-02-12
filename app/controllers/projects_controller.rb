@@ -69,6 +69,8 @@ class ProjectsController <  DashboardsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :location, :owner, :desciption, :construction_period, :status, :image)
+      pp = params.require(:project).permit(:name, :location, :owner, :desciption, :construction_period, :status, :image)
+      pp[:status] = params[:project][:status].to_i
+      return pp
     end
 end

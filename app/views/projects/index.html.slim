@@ -11,12 +11,12 @@ table.table.table-.w-100.table-hover
       th Name
       th Location
       th Owner
-      th Description
+      th Scope of work
       th period
       th Image
+      th Status
       th Action
-      / th Status
-      th
+      / th
 
   tbody
     - @projects.each.with_index(1) do |project, index|
@@ -28,11 +28,11 @@ table.table.table-.w-100.table-hover
         td = project.owner
         td.text-justify = project.description
         td = project.construction_period
-        / td = project.status
         - if project.image.attached?
           td
             div style="height=100px"
               = image_tag (project.image), class: '', style: "width:100px"
+        td = project.status
         td.pr-0
           = link_to project
             i.fas.fa-eye.text-info

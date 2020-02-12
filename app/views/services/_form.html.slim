@@ -1,5 +1,5 @@
 row
-  .col-10.offset-1.border.mt-3
+  .col-11.offset-1.mt-3
     = form_for @service, :html => {:style => 'background-color:white;'} do |f|
       - if @service.errors.any?
         #error_explanation
@@ -8,56 +8,18 @@ row
             - @service.errors.full_messages.each do |message|
               li = message
       .row.mt-5
-        .col-6
-          table
-            tr
-              td
-                = f.label :name
-              td
-                = f.text_field :name, class: 'form-control'
-            tr
-              td
-                = f.label :description
-              td
-                = f.text_area :description, class: 'form-control'
-            tr
-              td
-              td.text-right
-                button.img.btn-md.bg-info.text-light.p-2.rounded
-                  | Upload Image
-              td
-                = f.file_field :image, class: 'form-control imge', id:'imgInp'
-        .col-6
+        .col-8.mb-5
+          = f.label :name
+          = f.text_field :name, class: 'form-control'
+          = f.label :description
+          = f.text_area :description, class: 'form-control h-75'
+        .col-4
+          div
+            button.img.btn-md.bg-info.text-light.p-1.rounded
+              | Upload Image
+            = f.file_field :image, class: 'form-control d-none imge', id: 'imgInp'
           table
             tr
               td
                 img#showImg alt=" " src="#" style="height:150px;"
-                / img#blah alt=("your image") src="#" /
-      .actions.mt-5.float-right = f.submit
-
-css:
-  .imge{
-    display: none;
-  }
-javascript:
-  document.querySelector('.img').addEventListener('click',function(e){
-      e.preventDefault();
-      var a = document.querySelector('.imge');
-      a.click();
-  })
-
-  function readURL(input) {
-      if (input.files && input.files[0]) {
-          var reader = new FileReader();
-
-          reader.onload = function (e) {
-              $('#showImg').attr('src', e.target.result);
-          }
-
-          reader.readAsDataURL(input.files[0]);
-      }
-  }
-
-  $("#imgInp").change(function () {
-      readURL(this);
-  });
+        .actions.mt-5.text-center = f.submit

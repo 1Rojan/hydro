@@ -17,9 +17,9 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mt-0
         .btn-group
           button.btn.img-thumbnail.border aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
             = image_tag "uniquehydro.jpg", style: ' height:40px;border-radius: 50%;'
-              .dropdown-menu.dropdown-menu-right
-                = link_to destroy_user_session_path, method: :delete,
-                        class: 'dropdown-item col-6 border-left fa-sm',
-                        style: "cursor:pointer"
-                  i.fas.fa-sign-out-alt.mr-2
-                  span Sign out
+          .dropdown-menu.dropdown-menu-right
+            = link_to destroy_user_session_path, method: :delete,
+                    class: 'dropdown-item col-6 border-left fa-sm',
+                    style: "cursor:pointer"
+              i.fas.fa-sign-out-alt.mr-2
+              span Sign out
