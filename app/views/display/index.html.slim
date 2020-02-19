@@ -22,7 +22,7 @@ section.container-fluid.mt-5.bg-light.px-0
         h2.text-center.pb-2.mt-0 Running Projects
         .row.pb-4
           - @runningProjects.all.each do |project|
-            .col-6.mt-5.bg-light.rounded
+            .col-md-6.mt-5.bg-light.rounded
               div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 300px; background-size: cover;"
               h4.text-danger.text-center = project.name
               table.table-hover.w-100.text-dark.bg-light.border
@@ -43,7 +43,7 @@ section.container-fluid.mt-5.bg-light.px-0
         h2.text-center.pb-2 Completed Projects
         .row.pb-4
           - @completedProjects.all.each do |project|
-            .col-6.mt-5.bg-light.rounded
+            .col-md-6.mt-5.bg-light.rounded
               div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 300px; background-size: cover;"
               h4.text-danger.text-center = project.name
               table.table-hover.text-dark.border
@@ -62,7 +62,7 @@ section.container-fluid.mt-5.bg-light.px-0
 
     - if @clients.nil? == false
       - Client.all.each do |clien|
-        .col-4.d-flex.justify-content-center.px-0
+        .col-md-4.d-flex.justify-content-center.px-0
           .card.bg-dark.text-white.shadow-lg.p-3.mb-5.bg-white.rounded
             div.img-thumbnail style="background: url(#{url_for(clien.image)}) no-repeat; height: 320px;width:320px; background-size: cover;"
             .card-img-overlay
