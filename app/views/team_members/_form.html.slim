@@ -20,7 +20,7 @@ row
                   | Upload Image
             tr
               td
-                = f.file_field :image, class: 'form-control d-none', id:'imgInp'
+                = f.file_field :image, class: 'form-control d-none imge', id:'imgInp'
             tr
               td
                 = f.label :position
@@ -28,11 +28,39 @@ row
                 = f.text_field :position, class: 'form-control'
             tr
               td
+                / = f.fields_for :department do |g|
+                /   = g.select :id, Department.all.pluck(:name, :id), {}, class: 'form-control margin20top', style: 'height: 32px', required: true
                 = f.label :department
               td
-                = f.text_field :department, class: 'form-control'
+                =f.select :department, Department.all.map {|k| [k.name, k.id]}, class: 'form-control'
           img#showImg alt=" " src="#" style="height:200px;"
         .col-6
           = f.label :achievement
           = f.text_area :achievement, class: 'form-control h-75'
       .actions.mt-5 = f.submit
+
+javascript:
+
+    document.addEventListener('turbolinks:load', function () {
+        document.querySelector('.img').addEventListener('click', function (e) {
+            e.preventDefault();
+            var a = document.querySelector('.imge');
+            a.click();
+        })
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#showImg').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+    });

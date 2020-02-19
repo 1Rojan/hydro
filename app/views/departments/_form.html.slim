@@ -1,12 +1,14 @@
-= form_for @department do |f|
-  - if @department.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@department.errors.count, "error")} prohibited this department from being saved:"
-      ul
-        - @department.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions = f.submit
+row
+  .col-11.offset-1.mt-3
+    = form_for @department, :html => {:style => 'background-color:white;'} do |f|
+      - if @department.errors.any?
+        #error_explanation
+          h2 = "#{pluralize(@department.errors.count, "error")} prohibited this food_category from being saved:"
+          ul
+            - @department.errors.full_messages.each do |message|
+              li = message
+      .row.mt-5
+        .col-6.mb-5
+          = f.label :name
+          = f.text_field :name, class: 'form-control'
+        .actions.mt-5.text-center = f.submit

@@ -24,10 +24,11 @@ class TeamMembersController <  DashboardsController
   # POST /team_members
   # POST /team_members.json
   def create
-    @team_member = TeamMember.new(team_member_params)
+    department = Department.find(params[:team_member][:department])
+    @team_member = department.team_member.create(team_member_params)
 
     respond_to do |format|
-      if @team_member.save
+      if @team_member.persisted?
         format.html { redirect_to @team_member, notice: 'Team member was successfully created.' }
         format.json { render :show, status: :created, location: @team_member }
       else
@@ -69,6 +70,7 @@ class TeamMembersController <  DashboardsController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_member_params
-      params.require(:team_member).permit(:name, :position, :achievement, :department_id, :image)
+      params.require(:team_member).permit(:name, :position, :achievement,  :image)
+      # params.require(:template).permit(:title, :body, :icon, :color, groups_attributes: [:id, :name])
     end
 end
