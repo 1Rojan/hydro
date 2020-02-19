@@ -106,12 +106,11 @@ section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInLeft data-wow-du
   span.d-flex.justify-content-center.mt-4
     = link_to "Show all", display_index_path(index: "runningProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
 // Completed Projects
-section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInLeft data-wow-duration="2s"
+section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInRight data-wow-duration="2s"
   h2.text-center.pt-5.pb-2#completedProjects Completed Projects
-  .row.pb-4.d-none.d-md-block
+  .row.pb-4
     - Project.where(status: 1)[0...2].each do |proj|
-      .col-md-6.mt-5
-        div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+
       .col-md-6.mt-5.bg-light.pl-0.rounded
         h4.text-danger.text-center.my-3 = proj.name
         table.table.table-hover.w-100.text-dark
@@ -128,9 +127,10 @@ section.container-fluid.text-dark.pb-5.whitegradient.wow.slideInLeft data-wow-du
             td.p-2 Scope of Work
             td = proj.description
             / span.float-right
-
-    span.d-flex.justify-content-center
-      = link_to "Show all", display_index_path(index: "completedProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
+      .col-md-6.mt-5
+        div.img-thumbnail style="background: url(#{asset_path("slide2.jpg")}) no-repeat; height: 350px; background-size: cover;"
+  span.d-flex.justify-content-center
+    = link_to "Show all", display_index_path(index: "completedProjects") , class: 'text-decoration-none btn btn-md rounded bg-light border border-info text-info px-5'
 
     //mobile view Completed projects
   .row.pb-4.d-block.d-md-none
@@ -379,7 +379,7 @@ section#overlay.container-fluid.bckimg.wow.bounceInUp.mt-5 data-wow-duration="2s
             - Department.first.team_member.all.each do |team|
               .col-12.d-flex.justify-content-around
                 .card.shadow-lg.mb-5.bg-white.rounded style=("width: 18rem;")
-                  div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
+                  / div.mx-auto.img-thumbnail.w-100 style="background: url(#{url_for(team.image)}) no-repeat;height:250px; background-size: cover; background-position:center;"
                   / img.card-img-top alt="..." src="..." /
                   .card-body
                     h5.text-center.card-title.text-light.mb-1
@@ -428,9 +428,9 @@ section.container-fluid.mt-5.whitegradient#contact_us.wow.bounceInUp data-wow-du
     .col-md-6
       div style="width"
       div.d-none.d-md-block
-        iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3532.9729120334446!2d85.32615915001384!3d27.687232082899484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnique%20Hydro%20and%20Electric%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1580118794250!5m2!1sen!2snp" width="600" height="450" style="border:0;" allowfullscreen=""
+        iframe src="https://wego.here.com/directions/mix//Unique-Hydro-and-Electric-Pvt.-Ltd.,-Rudramati-Marg,-32,-Kathmandu:e-eyJuYW1lIjoiVW5pcXVlIEh5ZHJvIGFuZCBFbGVjdHJpYyBQdnQuIEx0ZC4iLCJhZGRyZXNzIjoiVGVlbmt1bmUsIE5lYXIgUGVudGFnb24gQ29sbGFnZSwgS2F0aG1hbmR1LCBOZXBhbCIsImxhdGl0dWRlIjoyNy43LCJsb25naXR1ZGUiOjg1LjMzMzMsInByb3ZpZGVyTmFtZSI6ImZhY2Vib29rIiwicHJvdmlkZXJJZCI6MzIwOTU5MTA0NzczNTI3fQ==?map=27.69785,85.32742,15,normal&fb_locale=en_US" width="600" height="450" style="border:0;" allowfullscreen=""
       div.d-block.d-md-none
-        iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d3532.9729120334446!2d85.32615915001384!3d27.687232082899484!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sUnique%20Hydro%20and%20Electric%20Pvt.%20Ltd.!5e0!3m2!1sen!2snp!4v1580118794250!5m2!1sen!2snp" width="330px" height="330px " style="border:0;" allowfullscreen=""
+        iframe src="https://wego.here.com/directions/mix//Unique-Hydro-and-Electric-Pvt.-Ltd.,-Rudramati-Marg,-32,-Kathmandu:e-eyJuYW1lIjoiVW5pcXVlIEh5ZHJvIGFuZCBFbGVjdHJpYyBQdnQuIEx0ZC4iLCJhZGRyZXNzIjoiVGVlbmt1bmUsIE5lYXIgUGVudGFnb24gQ29sbGFnZSwgS2F0aG1hbmR1LCBOZXBhbCIsImxhdGl0dWRlIjoyNy43LCJsb25naXR1ZGUiOjg1LjMzMzMsInByb3ZpZGVyTmFtZSI6ImZhY2Vib29rIiwicHJvdmlkZXJJZCI6MzIwOTU5MTA0NzczNTI3fQ==?map=27.69785,85.32742,15,normal&fb_locale=en_US" width="330px" height="330px " style="border:0;" allowfullscreen=""
     .col-md-6
       form
         .form-group

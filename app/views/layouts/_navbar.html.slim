@@ -1,7 +1,7 @@
 / nav.navbar.navbar-expand-lg.me_sticky.py-2.px-0 style=("background-color: #00498a;z-index:2")
-nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.position-absolute.container-fluid
+nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.position-absolute.container-fluid.bg-light
   =link_to root_path do
-    div style='background: url("#{asset_path("unique.png")}");height:75px;width:120px;background-size:contain'
+    div style='background: url("#{asset_path("unique.png")}");height:70px;width:235px;background-size:contain'
   / =image_tag("uniquehydro.jpg")
   / a.navbar-brand href="#"  Unique Hydro
   button.navbar-toggler aria-controls="navbarNavDropdown" aria-expanded="false" aria-label=("Toggle navigation") data-target="#navbarNavDropdown" data-toggle="collapse" type="button"
@@ -9,29 +9,33 @@ nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.positio
   #navbarNavDropdown.collapse.navbar-collapse
     ul.navbar-nav.ml-auto
       li.nav-item.active.mr-5
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#index"
+        a.nav-link.text-light.font-weight-bolder.primaryText style=("color:#385577;") href="/#index"
           | Home
           span.sr-only (current)
       li.nav-item.dropdown.mr-5
-        a#navbarDropdownMenuLink.nav-link.text-light.font-weight-bolder style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+        a#navbarDropdownMenuLink.nav-link.text-light.font-weight-bolder.primaryText  aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
           | Services
         .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
           -Service.all.each do |serv|
             .dropdown-item
-              = link_to "#{serv.name}", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark fa-sm px-0 py-0'
+              = link_to "#{serv.name}", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark px-0 py-0'
       li.nav-item.dropdown.mr-5
-        a#navbarDropdownMenuLink1.nav-link.text-light.font-weight-bolder style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+        a#navbarDropdownMenuLink1.nav-link.text-light.font-weight-bolder.primaryText style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
           | Projects
         .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-          a.dropdown-item.fa-sm href="/#runningProjects"  Running Projects
-          a.dropdown-item.fa-sm href="/#completedProjects"  Completed Projects
+          a.dropdown-item href="/#runningProjects"  Running Projects
+          a.dropdown-item href="/#completedProjects"  Completed Projects
       li.nav-item.mr-5
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#clients"  Clients
+        a.nav-link.text-light.font-weight-bolder.primaryText style=("color:#385577;") href="/#clients"  Clients
       li.nav-item.mr-5
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#teams"  Our Team
+        a.nav-link.text-light.font-weight-bolder.primaryText style=("color:#385577;") href="/#teams"  Our Team
       li.nav-item
-        a.nav-link.text-light.font-weight-bolder style=("color:#385577;") href="/#contact_us"  Contact Us
+        a.nav-link.text-light.font-weight-bolder.primaryText style=("color:#385577;") href="/#contact_us"  Contact Us
 css:
+  a.text-light:focus, a.text-light:hover {
+    color: #3c75a6 !important;
+
+  }
   nav a::after{
     content: '';
     display: block;
@@ -48,6 +52,7 @@ css:
   nav a:hover::after{
     width: 100%;
     transform: scale(1,1);
+
   }
   nav a
   {
@@ -58,14 +63,18 @@ css:
   .primarycolor {
     background-color: #2b4d76;
   }
+  .primaryText{
+      color: #2b4d76 !important;
+  }
   .transparency{
     background-color: transparent;
   }
   .black{
-    background-color: #343a40;
+    background-color: whitesmoke !important;
     position: fixed!important;
     padding-bottom: 1px;
     transition:  all ease-in-out 250ms;
+    border-bottom: 1px solid #ededed;
   }
 
 javascript:
@@ -84,6 +93,5 @@ javascript:
                 stickyEl.style.position = 'relative';
                 stickyEl.style.top = '';
                 stickyEl.classList.remove("black");
-
             }
         });

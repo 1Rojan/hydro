@@ -1,9 +1,11 @@
-p#notice = notice
-
-p
-  strong Name:
-  = @department.name
-
-=> link_to 'Edit', edit_department_path(@department)
-'|
-=< link_to 'Back', departments_path
+.col-12.mt-5.d-flex.justify-content-center
+  .card.shadow-lg.p-3.mb-5.bg-white.rounded
+    .card-body
+      .row
+        p
+          strong
+            | Name :
+          card-text = @department.name
+    .card-body
+      = link_to 'Edit', edit_department_path(@department), class: 'card-link'
+      = link_to 'Back', departments_path, class: 'card-link'
