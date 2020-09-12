@@ -17,14 +17,14 @@ nav.navbar.sticky-top.navbar-light.navbar-expand-lg.w-100.pt-0.me_sticky.positio
           | Services
         .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
           -Service.all.each do |serv|
-            .dropdown-item
+            .dropdown-item.bg-white
               = link_to "#{serv.name}", display_path(serv, service_id: serv.id), class: 'text-decoration-none btn btn-md rounded bg-white text-dark px-0 py-0'
       li.nav-item.dropdown.mr-5
         a#navbarDropdownMenuLink1.nav-link.text-light.font-weight-bolder.primaryText style=("color:#385577;") aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
           | Projects
         .dropdown-menu aria-labelledby="navbarDropdownMenuLink"
-          a.dropdown-item href="/#runningProjects"  Running Projects
-          a.dropdown-item href="/#completedProjects"  Completed Projects
+          a.dropdown-item.bg-white href="/#runningProjects"  Running Projects
+          a.dropdown-item.bg-white href="/#completedProjects"  Completed Projects
       li.nav-item.mr-5
         a.nav-link.text-light.font-weight-bolder.primaryText style=("color:#385577;") href="/#clients"  Clients
       li.nav-item.mr-5

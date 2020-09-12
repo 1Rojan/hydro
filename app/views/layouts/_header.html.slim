@@ -4,22 +4,14 @@ nav.navbar.navbar-expand-lg.navbar-light.bg-light.mt-0
   #navbarTogglerDemo01.collapse.navbar-collapse
     =link_to "Unique Hydro",dashboards_path,class:'font-weight-bolder'
     ul.navbar-nav.mr-auto.mt-2.mt-lg-0
-    / li.nav-item.active
-    /   a.nav-link.text-light href="#"
-    /     | Home
-    /     span.sr-only (current)
-    / li.nav-item
-    /   a.nav-link.text-light  href="#"  Link
-    / li.nav-item
-    /   a.nav-link.text-light aria-disabled="true" href="#" tabindex="-1"  Disabled
     form.bg-light.form-inline.my-2.my-lg-0
       span.mx-5
         .btn-group
           button.btn.img-thumbnail.border aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"
-            = image_tag "taja.png", style: ' height:40px;border-radius: 50%;'
+            = image_tag "user.png", style: ' height:40px;border-radius: 50%;'
           .dropdown-menu.dropdown-menu-right
             = link_to destroy_user_session_path, method: :delete,
                     class: 'dropdown-item col-6 border-left fa-sm',
                     style: "cursor:pointer"
-            i.fas.fa-sign-out-alt.mr-2
-            span Sign out
+              i.fas.fa-sign-out-alt.mr-2
+              span Sign out
