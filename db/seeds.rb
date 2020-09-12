@@ -11,7 +11,7 @@ service_images = Dir[Rails.root.join('app/assets/images/services', '*.*')]
 slider_images = Dir[Rails.root.join('app/assets/images/sliderImages', '*.*')]
 team_images = Dir[Rails.root.join('app/assets/images/team', '*.*')]
 admin = User.create(
-    email: 'admin@ideabreed.net',
+    email: 'admin@gmail.com',
     password: 'password',
     )
 if admin.persisted?
